@@ -17,8 +17,19 @@ describe('useAuth0', () => {
     const {
       result: { current },
     } = renderHook(useAuth0);
+
     expect(current.loginWithRedirect).toThrowError(
       'You forgot to wrap your component in <Auth0Provider>.'
     );
+  });
+
+  it('should throw', async () => {
+    const {
+      result: { current },
+    } = renderHook(useAuth0);
+
+    expect(() => {
+      expect(current).not.toBe(undefined);
+    }).toThrow(Error('expected'));
   });
 });
