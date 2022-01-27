@@ -1,5 +1,7 @@
-import useAuth0 from '../src/use-auth0';
+import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
+import { render } from '@testing-library/react';
+import useAuth0 from '../src/use-auth0';
 import { createWrapper } from './helpers';
 
 describe('useAuth0', () => {
@@ -24,12 +26,12 @@ describe('useAuth0', () => {
   });
 
   it('should throw', async () => {
-    const {
-      result: { current },
-    } = renderHook(useAuth0);
+    const App = (): null => {
+      useAuth0();
 
-    expect(() => {
-      expect(current).not.toBe(undefined);
-    }).toThrow(Error('expected'));
+      return null;
+    };
+
+    expect(() => render(<App />)).toThrowError('asdasd');
   });
 });
